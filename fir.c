@@ -1,13 +1,3 @@
-
-/**
- * @file       usr.c
- * @brief      WISP application-specific code set
- * @details    The WISP application developer's implementation goes here.
- *
- * @author     Aaron Parks, UW Sensor Systems Lab
- *
- */
-
 #include "msp430.h"
 #include <math.h>
 #define FIR_LENGTH 17
@@ -30,16 +20,10 @@ const unsigned int INPUT[] =
 0x1C00, 0x2000, 0x2400, 0x2000, 0x1C00, 0x1800, 0x1400, 0x1000,
 0x0C00, 0x0800, 0x0400};
 
-/**
- * This implements the user application and should never return
- *
- * Must call WISP_init() in the first line of main()
- * Must call WISP_doRFID() at some point to start interacting with a reader
- */
+
 void main(void) {
 
-  // Talk to the RFID reader.
-  while (1) {
+
 	  int i, y; /* Loop counters */
 	  volatile float OUTPUT[36],sum;
 	  for(y = 0; y < 36; y++)
@@ -52,5 +36,4 @@ void main(void) {
 	  OUTPUT[y] = sum + (INPUT[y + FIR_LENGTH/2] * COEFF[FIR_LENGTH/2] );
 	  }
 
-  }
 }
