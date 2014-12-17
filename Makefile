@@ -8,7 +8,7 @@ CXX             := $(CROSS)g++
 OBJDUMP         := $(CROSS)objdump
 SIZE            := $(CROSS)size
 LD            := $(CC)
-LDFLAGS         := -L/home/amrita/Downloads/msp430-support/include 
+LDFLAGS         := -L/home/amrita/Downloads/msp430-support/include -lm
 LDFLAGS		+= -I/home/amrita/Downloads/msp430-support/include 
 CFLAGS          := -Os -Wall -W -Wextra -mmcu=$(TARGETMCU)
 CFLAGS		+= -I/home/amrita/Downloads/msp430-support/include 
