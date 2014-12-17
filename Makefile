@@ -1,25 +1,30 @@
-TARGETMCU       ?= msp430fr5969
-MCUTYPE		?= sim
+####################
+msp-bench makefile
+####################
 
+# set your target-mcu! 
+TARGETMCU       ?= msp430fr5969
+# where is your msp430-include library?
+MSP-INCLUDE 	:= /home/amrita/Downloads/msp430-support/include
 
 CROSS           := msp430-elf-
 CC              := $(CROSS)gcc
 CXX             := $(CROSS)g++
 OBJDUMP         := $(CROSS)objdump
 SIZE            := $(CROSS)size
-LD            := $(CC)
-LDFLAGS         := -L/home/amrita/Downloads/msp430-support/include -lm
-LDFLAGS		+= -I/home/amrita/Downloads/msp430-support/include 
+LD            	:= $(CC)
+LDFLAGS         := -L$(MSP-INCLUDE) -lm
+LDFLAGS			+= -I$(MSP-INCLUDE) 
 CFLAGS          := -Os -Wall -W -Wextra -mmcu=$(TARGETMCU)
-CFLAGS		+= -I/home/amrita/Downloads/msp430-support/include 
-CFLAGS		+= -L/home/amrita/Downloads/msp430-support/include 
+CFLAGS			+= -I$(MSP-INCLUDE) 
+CFLAGS			+= -L$(MSP-INCLUDE)
 
-# SRCS            := $(wildcard *.c)
-SRCS			:= whet.c
+SRCS            := $(wildcard *.c)
+# SRCS			:= whet.c
 PROG            := $(firstword $(SRCS:.c=))
 OBJS            := $(SRCS:.c=.o)
 
-all:            $(PROG).elf $(PROG).lst
+all:            $(firstword $(SRCS:.c=))
 
 $(PROG).elf:    $(OBJS)
 	$(LD) -o $(PROG).elf $(OBJS) $(LDFLAGS)
