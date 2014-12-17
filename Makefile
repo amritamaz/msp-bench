@@ -1,5 +1,5 @@
 ####################
-msp-bench makefile
+# msp-bench makefile
 ####################
 
 # set your target-mcu! 
@@ -23,21 +23,24 @@ SRCS            := $(wildcard *.c)
 # SRCS			:= whet.c
 PROG            := $(firstword $(SRCS:.c=))
 OBJS            := $(SRCS:.c=.o)
+PRGS 			:= $(patsubst %.c,%,$(SRCS))
+PRG_SUFFIX 		:=.elf
+ELFS 			:= $(patsubst %,%$(PRG_SUFFIX),$(PRGS))
+OBJ 			:= $(patsubst %$(PRG_SUFFIX),%.o,$@)
 
-all:            $(firstword $(SRCS:.c=))
 
-$(PROG).elf:    $(OBJS)
-	$(LD) -o $(PROG).elf $(OBJS) $(LDFLAGS)
+all:            $(ELFS)
+
+%.elf:    %.o
+	$(LD) -o $@ $< $(LDFLAGS)
 
 %.o:            %.c
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -Wno-old-style-declaration
 
 %.lst:          %.elf
 	$(OBJDUMP) -DS $< > $@
 	$(SIZE) $<
 
 clean:
-	rm -f $(PROG).elf $(PROG).lst $(OBJS)
+	rm -f $(ELFS).elf $(PRGS).lst $(OBJS)
 
-install:        $(PROG).elf
-	$(MSPDEBUG) -n rf2500 "prog $(PROG).elf"
