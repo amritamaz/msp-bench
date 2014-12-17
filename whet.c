@@ -1,15 +1,12 @@
-
-/**
- * @file       usr.c
- * @brief      WISP application-specific code set
- * @details    The WISP application developer's implementation goes here.
- *
- * @author     Aaron Parks, UW Sensor Systems Lab
- *
- */
+/******************************************************************************* * 
+  * Name : Whetstone 
+  * Purpose : Benchmark the Whetstone code. The code focuses on scientific 
+  * functions such as sine, cosine, exponents and logarithm on 
+  * fixed and floating point numbers. 
+  * *******************************************************************************/
 
 #include "msp430.h"
-/******************************************************************************* * * Name : Whetstone * Purpose : Benchmark the Whetstone code. The code focuses on scientific * functions such as sine, cosine, exponents and logarithm on * fixed and floating point numbers. * *******************************************************************************/
+
 #include <math.h>
 #include <stdio.h>
 
@@ -49,44 +46,9 @@ P3(float *X,float *Y,float *Z1)
 }
 
 
-/**
- * This implements the user application and should never return
- *
- * Must call WISP_init() in the first line of main()
- * Must call WISP_doRFID() at some point to start interacting with a reader
- */
 void main(void) {
 
 
-	//  // Register callback functions with WISP comm routines
-	//  WISP_registerCallback_ACK(&my_ackCallback);
-	//  WISP_registerCallback_READ(&my_readCallback);
-	//  WISP_registerCallback_WRITE(&my_writeCallback);
-	//  WISP_registerCallback_BLOCKWRITE(&my_blockWriteCallback);
-	//
-	//  // Get access to EPC, READ, and WRITE data buffers
-	//  WISP_getDataBuffers(&wispData);
-	//
-	//  // Set up operating parameters for WISP comm routines
-	//  WISP_setMode( MODE_READ | MODE_WRITE | MODE_USES_SEL);
-	//  WISP_setAbortConditions(CMD_ID_READ | CMD_ID_WRITE /*| CMD_ID_ACK*/);
-	//
-	//  // Set up EPC
-	//  wispData.epcBuf[0] = 0x05; // WISP version
-	//  wispData.epcBuf[1] = *((uint8_t*)INFO_WISP_TAGID+1); // WISP ID MSB
-	//  wispData.epcBuf[2] = *((uint8_t*)INFO_WISP_TAGID); // WISP ID LSB
-	//  wispData.epcBuf[3] = 0xAA;
-	//  wispData.epcBuf[4] = 0xBB;
-	//  wispData.epcBuf[5] = 0xCC;
-	//  wispData.epcBuf[6] = 0xDD;
-	//  wispData.epcBuf[7] = 0xEE;
-	//  wispData.epcBuf[8] = 0xFF;
-	//  wispData.epcBuf[9] = 0x99;
-	//  wispData.epcBuf[10]= 0xAA;
-	//  wispData.epcBuf[11]= 0xAA;
-
-	// Talk to the RFID reader.
-	while (1) {
 		int LOOP,I,II,JJ,N1,N2,N3,N4,N5,N6,N7,N8,N9,N10,N11;
 		float X,Y,Z1;
 		T = .499975;
@@ -241,6 +203,6 @@ void main(void) {
 				}
 			}
 		}
-	}
+	
 }
 
