@@ -31,7 +31,6 @@ struct Record
 
 typedef struct Record	RecordType;
 typedef RecordType *	RecordPtr;
-#define NULL 0
 #define TRUE 1
 #define FALSE 0
 #define REG register
@@ -238,17 +237,11 @@ void Proc0 (void)
 }
 
 
+int main(void) {
 
-/**
- * This implements the user application and should never return
- *
- * Must call WISP_init() in the first line of main()
- * Must call WISP_doRFID() at some point to start interacting with a reader
- */
-void main(void) {
+	
+	Proc0();
 
-	while (1) {
-		Proc0();
-
-	}
+	
+	return 0;
 }
